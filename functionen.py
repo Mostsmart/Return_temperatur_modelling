@@ -3,6 +3,8 @@
 Created on Tue Nov  9 14:29:42 2021
 
 @author: Abdi Mohamed 
+
+this script include the code for the helping functions required for the modelling of the return temperature 
 """
 
 import os.path
