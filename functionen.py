@@ -53,7 +53,7 @@ def instaSystem_auswertung(path_ISA_csv,path_sim_data):
     Return type:return an array of Dataframes, each dataframe is a TRNSYS Simulation run. 
  
 
-"""
+    """
     
     ISA = pd.read_csv(path_ISA_csv, sep=';')
     building_map = dict(zip(ISA.iloc[: , 0],ISA.iloc[:,1]))
@@ -156,7 +156,7 @@ def storage_auswertung(path_ISA_csv,path_sim_data):
     Return type:return an array of Dataframes, each dataframe is a TRNSYS Simulation run. 
  
 
-"""
+    """
 
     sns.set()
     sns.set_style('ticks')
@@ -287,7 +287,7 @@ def Heizung_bestand_lader(path_sim_data):
     Return type:return an array of Dataframes, each dataframe is a TRNSYS Simulation run. 
  
 
-"""
+    """
 
     cp = 4181/3600
     startdate = pd.datetime(1970, 1, 1, 0, 0)
@@ -390,7 +390,7 @@ def efh_mfh_seperator(buildings):
         seperation of the loaded data for the heating systems into two arrays
         buildings_efh, buildings_mfh 
 
-"""
+    """
     
     cp = 4181/3600 #Wh/(kg K)
     iterator = np.arange(len(buildings))
@@ -422,7 +422,7 @@ def Heizung_neubau_lader(path_sim_data):
     Return type:return an array of Dataframes, each dataframe is a TRNSYS Simulation run. 
  
 
-"""
+    """
 
     cp = 4181/3600
     startdate = pd.datetime(1970, 1, 1, 0, 0)
@@ -470,7 +470,7 @@ def resampler_3auf15(buildings):
     Description:
     Resample the input dataframe from 3 minute to 15. only the primary return temperature
     (_ph_hot_out) resampled using the weights of the primary massflow (dm_DH)
-"""
+    """
 
     building15 = []
     iterator = np.arange(len(buildings))
@@ -510,7 +510,7 @@ def null_leistung(buildings,min_leistung_kw = 0.02):
         mae,mse,r2,accuracy,ab
         return an array of Dataframes, each dataframe is a TRNSYS Simulation run.
     
-"""
+    """
     
     building0= []
     iterator = np.arange(len(buildings))
@@ -541,7 +541,7 @@ def evaluate(y_test,y_predicted):
     Description:
     Resample the input dataframe from 3 minute to 15. only the primary return temperature
     (_ph_hot_out) resampled using the weights of the primary massflow (dm_DH)
-"""
+    """
     
     def gettype(y_test,y_predicted):
         if type(y_test) is np.ndarray:
@@ -590,7 +590,7 @@ def alles(buildings,parameters,iterator):
  
     Description:
         build one big dataframe from the multiple simulation runs. 
-"""
+    """
     
     for i in tqdm(iterator):
         if i == iterator[0]:
@@ -637,7 +637,7 @@ def kmcluster(df,n_clusters = 20,random_state = 42):
     Description:
     Resample the input dataframe from 3 minute to 15. only the primary return temperature
     (_ph_hot_out) resampled using the weights of the primary massflow (dm_DH)
-"""
+    """
 
     cluster_df =np.array(df)
     scaler0 = StandardScaler().fit(cluster_df)
@@ -668,6 +668,7 @@ def null_leistung_index(buildings,min_leistung_kw = 0.02):
         ohne_null = buildings[i].loc[(buildings[i][['dQ_DH']] < min_leistung_kw).all(axis=1), :]
         building0.append(ohne_null.index)
     return building0
+    
 
 def zirkclust(df):
     '''
@@ -720,7 +721,7 @@ def plot_prediction(x_data,y_data,y_predicted,nrows = 1 , r2 =5, building = 'def
  
     Description:
     Removes the item from the list if the index exists.
-"""
+    """
 
 
     plt.rcParams.update({'font.size': 20})
